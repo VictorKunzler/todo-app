@@ -1,4 +1,4 @@
-import TodoServiceLocalStorage from "../Todo/localStorage";
+import TodoServiceLocalStorage from '../Todo/localStorage';
 
 const TodoService = { ...TodoServiceLocalStorage };
 

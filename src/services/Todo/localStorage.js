@@ -1,4 +1,4 @@
-import TodoLib from "./lib/Todo";
+import TodoLib from './lib/Todo';
 
 const getTodos = () => {
   return JSON.parse(localStorage.getItem('todos')) || [];
@@ -32,10 +32,20 @@ const updateTodoText = ({ id, newText }) => {
   return todosEdited;
 };
 
+const deleteTodoItem = id => {
+  const todos = getTodos();
+  const todosEdited = TodoLib.deleteTodoItem({ id, todos });
+
+  localStorage.setItem('todos', JSON.stringify(todosEdited));
+
+  return todosEdited;
+};
+
 const TodoServiceLocalStorage = {
   addTodo,
   getTodos,
-  updateTodoText
-}
+  updateTodoText,
+  deleteTodoItem
+};
 
 export default TodoServiceLocalStorage;

@@ -1,5 +1,5 @@
-import { createContext, useCallback, useMemo, useState } from "react";
-import TodoService from "../services/Todo";
+import { createContext, useCallback, useMemo, useState } from 'react';
+import TodoService from '../services/Todo';
 
 export const TodoContext = createContext({});
 
@@ -14,13 +14,18 @@ export const TodoProvider = (props) => {
     setTodos(TodoService.updateTodoText({ id, newText }));
   }, [setTodos]);
 
+  const deleteTodoItem = useCallback((id) => {
+    setTodos(TodoService.deleteTodoItem(id));
+  }, [setTodos]);
+
   const providerInitialValue = useMemo(
     () => ({
       todos,
       updateTodoText,
-      addTodo
+      addTodo,
+      deleteTodoItem
     }),
-    [todos, updateTodoText, addTodo]
+    [todos, updateTodoText, addTodo, deleteTodoItem]
   );
 
   return (
@@ -29,6 +34,6 @@ export const TodoProvider = (props) => {
     >
       {props.children}
     </TodoContext.Provider>
-  )
-}
+  );
+};
 
