@@ -1,4 +1,7 @@
-import styled from "styled-components";
+import { useContext } from 'react';
+import styled from 'styled-components';
+
+import { TodoContext } from '../../providers/Todo';
 
 const ClearCompleted = styled.button`
   color: inherit;
@@ -10,11 +13,14 @@ const ClearCompleted = styled.button`
   padding: 3px 7px;
   cursor: pointer;
   font-size: 14px;
-`
+`;
 
 const TodoClearCompleted = () => {
+  const { deleteCompleted } = useContext(TodoContext);
+  const handleOnClick = () => deleteCompleted();
+
   return (
-    <ClearCompleted>Clear completed</ClearCompleted>
+    <ClearCompleted onClick={handleOnClick}>Clear completed</ClearCompleted>
   );
 };
 

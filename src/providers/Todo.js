@@ -5,6 +5,10 @@ export const TodoContext = createContext({});
 
 export const TodoProvider = (props) => {
   const [todos, setTodos] = useState(TodoService.getTodos());
+  
+  const todosActive = todos.filter(todo => !todo.completed);
+
+  const todosCompleted = todos.filter(todo => todo.completed);
 
   const addTodo = useCallback(text => {
     setTodos(TodoService.addTodo(text));
@@ -14,16 +18,28 @@ export const TodoProvider = (props) => {
     setTodos(TodoService.updateTodoText({ id, newText }));
   }, [setTodos]);
 
+  const updateTodoCompleted = useCallback(({ id, isCompleted }) => {
+    setTodos(TodoService.updateTodoCompleted({ id, isCompleted }));
+  }, [setTodos]);
+
   const deleteTodoItem = useCallback((id) => {
     setTodos(TodoService.deleteTodoItem(id));
+  }, [setTodos]);
+
+  const deleteCompleted = useCallback(() => {
+    setTodos(TodoService.deleteCompleted());
   }, [setTodos]);
 
   const providerInitialValue = useMemo(
     () => ({
       todos,
+      todosActive,
+      todosCompleted,
       updateTodoText,
       addTodo,
-      deleteTodoItem
+      deleteTodoItem,
+      deleteCompleted,
+      updateTodoCompleted
     }),
     [todos, updateTodoText, addTodo, deleteTodoItem]
   );

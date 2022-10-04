@@ -32,6 +32,22 @@ const updateTodoText = ({ id, newText }) => {
   return todosEdited;
 };
 
+const updateTodoCompleted = ({ id, isCompleted }) => {
+  const todos = getTodos();
+
+  let todosEdited = todos.map(todo => {
+    let updatedTodo = todo;
+
+    if(todo.id === id) updatedTodo = TodoLib.updateTodoCompleted({ todo: updatedTodo, isCompleted });
+
+    return updatedTodo;
+  });
+
+  localStorage.setItem('todos', JSON.stringify(todosEdited));
+
+  return todosEdited;
+};
+
 const deleteTodoItem = id => {
   const todos = getTodos();
   const todosEdited = TodoLib.deleteTodoItem({ id, todos });
@@ -41,11 +57,22 @@ const deleteTodoItem = id => {
   return todosEdited;
 };
 
+const deleteCompleted = () => {
+  const todos = getTodos();
+  const activeTodos = todos.filter(todo => !todo.completed);
+
+  localStorage.setItem('todos', JSON.stringify(activeTodos));
+
+  return activeTodos;
+};
+
 const TodoServiceLocalStorage = {
   addTodo,
   getTodos,
   updateTodoText,
-  deleteTodoItem
+  updateTodoCompleted,
+  deleteTodoItem,
+  deleteCompleted
 };
 
 export default TodoServiceLocalStorage;

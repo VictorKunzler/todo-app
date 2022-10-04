@@ -11,6 +11,11 @@ const updateTodoText = ({ todo, newText }) => {
   return todo;
 };
 
+const updateTodoCompleted = ({ todo, isCompleted }) => {
+  todo.completed = isCompleted;
+  return todo;
+};
+
 const deleteTodoItem = ({ id, todos }) => {
   return todos.filter(todo => todo.id !== id);
 };
@@ -18,6 +23,7 @@ const deleteTodoItem = ({ id, todos }) => {
 const TodoLib = {
   createTodo,
   updateTodoText,
+  updateTodoCompleted,
   deleteTodoItem
 };
 

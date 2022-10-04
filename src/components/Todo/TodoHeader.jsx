@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useContext } from "react";
-import styled from "styled-components";
-import { TodoContext } from "../../providers/Todo";
+import { useState } from 'react';
+import { useContext } from 'react';
+import styled from 'styled-components';
+import { TodoContext } from '../../providers/Todo';
 
 const TodoHeaderInput = styled.input`
   font-size: 2rem;
@@ -22,7 +22,7 @@ const TodoHeaderInput = styled.input`
     font-size: 1.8rem;
     color: #4d4d4d80;
   }
-`
+`;
 
 const TodoHeader = () => {
   const [value, setValue] = useState('');
@@ -30,14 +30,14 @@ const TodoHeader = () => {
 
   const handleOnChange = event => {
     setValue(event.target.value);
-  }
+  };
 
   const handleKeyDown = event => {
     if(event.key === 'Enter') {
       addTodo(value);
       setValue('');
     }
-  }
+  };
 
   return (
     <TodoHeaderInput

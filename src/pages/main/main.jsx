@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { Title } from "../../styledComponents";
-import Todo from "../../components/Todo/Todo";
+import { Title } from '../../styledComponents';
+import Todo from '../../components/Todo/Todo';
 
 const MainContainer = styled.div`
   background-color: #f5f5f5;
@@ -10,7 +10,7 @@ const MainContainer = styled.div`
   padding: 1rem;
   text-align: center;
   box-sizing: border-box;
-`
+`;
 
 function Main() {
   return (
@@ -20,7 +20,7 @@ function Main() {
       </Title>
       <Todo></Todo>
     </MainContainer>
-  )
-};
+  );
+}
 
 export default Main;
